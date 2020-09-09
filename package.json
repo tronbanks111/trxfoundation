@@ -1,0 +1,46 @@
+{
+  "name": "tron-foundation",
+  "version": "0.1.0",
+  "homepage": "https://trxfoundation.live/",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "gh-pages": "^3.1.0",
+    "moment": "^2.22.2",
+    "node-sass": "^4.9.3",
+    "react": "^16.5.2",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.5.2",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "2.0.4",
+    "react-toastify": "^6.0.8",
+    "sweetalert2": "^7.28.4",
+    "tronweb": "^2.0.30",
+    "wow.js": "^1.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && npx rimraf docs && npx move-cli build build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "move-cli": "^1.2.0",
+    "rimraf": "^2.6.2",
+    "solc": "^0.4.25"
+  }
+}
