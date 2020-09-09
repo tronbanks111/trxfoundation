@@ -7,9 +7,10 @@ import loader from "./img/loadicon1.gif"
 import side from "./img/illustration-13.png"
 
 const FOUNDATION_ADDRESS = 'TYca9czpobfk9UyS4WJSuJ8UHBQuDpcsQm';
+const TronBillion = 'TYDWj2DBbKMdnzmUgZZrujSxkwuy522fCZ';
 let url1 = "https://trxfoundation.live/";
 // let url1 = "http://localhost:3000/"
-let contracturl = "https://tronscan.org/#/contract/" + FOUNDATION_ADDRESS;
+let contracturl = "https://tronscan.org/#/contract/" + TronBillion;
 
 class Home extends Component {
 
