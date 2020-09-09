@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
 import TronWeb from 'tronweb';
-import Utils from 'utils';
+import Utils from '../utils';
 //import Home from "./Home";
 import Home from "./Home";
 import Plan from "./Plan";

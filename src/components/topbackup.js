@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
 import TronWeb from 'tronweb';
-import Utils from 'utils';
+import Utils from '../utils';
 import LoadingPage from './LoadingPage.js';
 import ChangeAdmin from "./ChangeAdmin";
 import Timer from "./Timer";

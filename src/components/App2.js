@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import TronWeb from 'tronweb';
-import Utils from 'utils';
+import Utils from '../utils';
 import Home from './Home.js';
 import Top from "./TopPage2";
 import { Route, BrowserRouter } from "react-router-dom";

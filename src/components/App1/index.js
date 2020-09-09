@@ -7,7 +7,7 @@ import HomePage3 from 'components/HomePage3';
 import HomePage4 from 'components/HomePage4';
 import Footer from 'components/Footer';
 import TronWeb from 'tronweb';
-import Utils from 'utils';
+import Utils from '../utils';
 import Swal from 'sweetalert2';
 import banner from 'assets/banner.png';
 
