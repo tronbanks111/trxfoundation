@@ -29,9 +29,6 @@ let url1 = "https://trxfoundation.live/";
 const FOUNDATION_ADDRESS = 'TYca9czpobfk9UyS4WJSuJ8UHBQuDpcsQm';
 
 
-
-const MANAGER = "TFkiD3nhA1hahcSNfAMdwVgntNaW2CciMg";
-
 let tronContracturl = "https://tronscan.org/#/contract/" + FOUNDATION_ADDRESS;
 let tronAddressurl = "https://tronscan.org/#/address/";
 toast.configure();
