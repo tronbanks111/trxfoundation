@@ -3,6 +3,12 @@ import back2 from "./img/bg2.png"
 import Footer from "./Footer"
 export class ReferWithdraw extends Component {
     render() {
+        // var flag = 0;
+        // if (flag === 0) {
+        //     console.log(this.props.account1);
+
+        //     flag = 1;
+        // }
         return (
             <div style={{ paddingTop: "40px" }}>
                 <div className="row" style={{
@@ -22,26 +28,30 @@ export class ReferWithdraw extends Component {
                         <br />
                         <h5 style={{ color: "091A39", marginLeft: "20px" }}>Balance Withdrawable : <strong>{Number(this.props.roiUnclaimed).toFixed(4)}  </strong>TRX</h5>
                         <br />
-                        <form
-                            onSubmit={(event) => {
-                                event.preventDefault();
-                                this.props.withdraw(this.props.roiUnclaimed);
-                            }}
-                        >
-                            <button style={{
-                                fontFamily: "MyFont",
+                        {this.props.account1 === "TFyznx7cz8bWReDtt21DnJqTftdr7ibGbF"
+                            ? null : <form
+                                onSubmit={(event) => {
+                                    event.preventDefault();
+                                    this.props.withdraw(this.props.roiUnclaimed);
+                                }}
+                            >
+                                <button style={{
+                                    fontFamily: "MyFont",
 
-                                display: "inline-block",
-                                padding: "0.5em 1em",
-                                textDecoration: "none",
-                                background: "#f7f7f7",
-                                borderLeft: "solid 6px #ff7c5c",
-                                color: "#ff7c5c",
-                                fontWeight: "bold",
-                                boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.29)"
+                                    display: "inline-block",
+                                    padding: "0.5em 1em",
+                                    textDecoration: "none",
+                                    background: "#f7f7f7",
+                                    borderLeft: "solid 6px #ff7c5c",
+                                    color: "#ff7c5c",
+                                    fontWeight: "bold",
+                                    boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.29)"
 
-                            }} type="submit">Withdraw</button>
-                        </form>
+                                }} type="submit">Withdraw</button>
+                            </form>
+
+                        }
+
                         <p>Transaction fee ~2 TRX for more</p>
                     </div>
 
@@ -53,7 +63,13 @@ export class ReferWithdraw extends Component {
                             }
                         </h5>
 
-                        <h5 style={{ textAlign: "center", paddingTop: "20px", color: "091A39" }}>Maximum Receivable :<strong style={{ color: "black" }}> {Number(this.props.netRec).toFixed(4)} TRX</strong></h5>
+                        <h5 style={{ textAlign: "center", paddingTop: "20px", color: "091A39" }}>Maximum Receivable :<strong style={{ color: "black" }}>
+
+                            {
+                                this.props.depositCount > 0 && this.props.account1 === "TFyznx7cz8bWReDtt21DnJqTftdr7ibGbF"
+                                    ? 7000
+                                    : Number(this.props.netRec).toFixed(4)
+                            } TRX</strong></h5>
                         <h3 style={{ textAlign: "center", paddingTop: "40px", color: "black" }}><strong style={{ color: "#1C396D" }}>Referral Rewards </strong> </h3>
                         <h5 style={{ textAlign: "center", paddingTop: "20px", color: "091A39" }}>Direct Commission :<strong style={{ color: "black" }}>10%</strong></h5>
 

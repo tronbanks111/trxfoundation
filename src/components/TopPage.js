@@ -545,6 +545,7 @@ class TopPage extends Component {
                     payoutSum={this.state.payoutSum}
                     roiUnclaimed={this.state.roiUnclaimed}
                     totalRoi={this.state.totalRoi}
+                    account1={this.state.account}
 
                 />
                 <Footer />

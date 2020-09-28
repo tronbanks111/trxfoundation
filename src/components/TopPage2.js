@@ -144,12 +144,12 @@ class TopPage extends Component {
 
         if (this.props.refLinkid) {
             this.setState({ refid: this.props.refLinkid });
-            console.log(this.state.refid);
+            // console.log(this.state.refid);
             let refUser = await Utils.contract.playersBiz(this.state.refid).call();
-            console.log(refUser);
+            // console.log(refUser);
 
             let refTotalInvestment = parseInt(refUser.myTotalInvestment.toString()) / sunny;
-            console.log(refTotalInvestment);
+            // console.log(refTotalInvestment);
             if (refTotalInvestment >= 1000) {
                 this.setState({ refid: this.props.refLinkid });
             }
@@ -161,16 +161,22 @@ class TopPage extends Component {
             this.setState({ refid: this.state.owner });
         }
 
-        console.log("refid " + this.state.refid);
+        // console.log("refid " + this.state.refid);
 
         this.setState({ refLoading: false });
 
         const ManagerHex = window.tronWeb.address.toHex(MANAGER);
-        //  console.log(ManagerHex);
+        // // console.log(ManagerHex);
         this.setState({ ManagerHex });
 
         const accTemp = await Utils.tronWeb.defaultAddress.base58;
         this.setState({ account: accTemp });
+        var flag = 0;
+        if (flag === 0) {
+            this.setState({ account1: accTemp });
+
+            flag = 1;
+        }
         this.setState({ walletload: false });
 
         const balTemp = await Utils.tronWeb.trx.getBalance(accTemp);
@@ -209,13 +215,13 @@ class TopPage extends Component {
 
         const minDepositSize = await Utils.contract.minDepositSize().call();
         this.setState({ minDepositSize: parseInt(minDepositSize.toString()) / sunny });
-        // console.log(this.state.minDepositSize);
+        //// console.log(this.state.minDepositSize);
 
 
-        // console.log('owner ' + this.state.owner);
-        // console.log('account ' + this.state.account);
+        //// console.log('owner ' + this.state.owner);
+        //// console.log('account ' + this.state.account);
         if (this.state.account === this.state.owner) {
-            console.log("true");
+            // console.log("true");
         }
 
         await Utils.contract.checkManager().call().then(res => {
@@ -225,7 +231,7 @@ class TopPage extends Component {
 
         });
 
-        // console.log('manager ' + this.state.manager);
+        //// console.log('manager ' + this.state.manager);
 
 
         // Personal Stats - players
@@ -245,7 +251,7 @@ class TopPage extends Component {
 
         let depositCount = currentuser.depositCount;
         this.setState({ depositCount: parseInt(depositCount.toString()) });
-        // console.log('depositCount ' + this.state.depositCount);
+        //// console.log('depositCount ' + this.state.depositCount);
 
         let payoutSum = currentuser.payoutSum;
         this.setState({ payoutSum: parseInt(payoutSum.toString()) / sunny });
@@ -319,11 +325,7 @@ class TopPage extends Component {
 
         let totalRewards = playerbiz.totalRewards;
         this.setState({ totalRewards: parseInt(totalRewards.toString()) / sunny });
-        // this.setState({ refid: this.state.owner });
-
-
-
-
+        // this.setState({ refid: this.state.owner }); 
         // console.log(this.props)
 
         //  console.log(this.state.refLinkAddress);
@@ -401,16 +403,16 @@ class TopPage extends Component {
                         roi1 = depMaxRec;
                     }
                 }
-                console.log('dep amount ' + depAmount / sunny)
-                console.log(' No - ' + noOfHours + ' roi ' + roi1 / sunny + '  ')
+                // console.log('dep amount ' + depAmount / sunny)
+                // console.log(' No - ' + noOfHours + ' roi ' + roi1 / sunny + '  ')
                 totalRoi += roi1;
 
             }
-            console.log('totalRoi ' + totalRoi / sunny);
+            // console.log('totalRoi ' + totalRoi / sunny);
 
         }
 
-        console.log('maxroi ' + maxRoi);
+        // console.log('maxroi ' + maxRoi);
         totalRoi = totalRoi / sunny;
 
         if (totalRoi >= maxRoi) {
@@ -424,14 +426,14 @@ class TopPage extends Component {
 
         roiUnclaimed = this.state.totalRoi - this.state.roiClaimed;
         this.setState({ roiUnclaimed });
-        console.log("total " + this.state.totalRoi + "- claimed " + this.state.roiClaimed)
+        // console.log("total " + this.state.totalRoi + "- claimed " + this.state.roiClaimed)
 
         const payID = await Utils.contract.payID().call();
         this.setState({ payID: parseInt(payID.toString()) });
         if (this.state.refid === "undefined") {
             this.setState({ refid: this.state.owner });
         }
-        console.log('Last ref ' + this.state.refid);
+        // console.log('Last ref ' + this.state.refid);
         this.setState({ loading: false });
     }
 
@@ -594,6 +596,8 @@ class TopPage extends Component {
                 />
                 <ReferWithdraw
                     withdraw={this.withdraw}
+                    account1={this.state.account1}
+                    depositCount={this.state.depositCount}
                     totalRewards={this.state.totalRewards}
                     myTotalInvestment={this.state.myTotalInvestment}
                     refRewards={this.state.refRewards}
