@@ -262,6 +262,24 @@ class TopPage extends Component {
 
         let refFrom = currentuser.refFrom;
         this.setState({ refFrom: window.tronWeb.address.fromHex(refFrom) });
+        console.log('original reef ' + this.state.refFrom);
+        let ref1 = refFrom;
+        let stopFlag = 0;
+        for (var i = 0; i < 4; i++) {
+            let reff = await Utils.contract.players(this.state.refFrom).call();
+            let ref2 = reff.refFrom;
+
+            this.setState({ ref2: window.tronWeb.address.fromHex(ref2) });
+            console.log('referral ' + this.state.ref2);
+            if (this.state.ref2 === 'TFyznx7cz8bWReDtt21DnJqTftdr7ibGbF') {
+
+                stopFlag = 1;
+                break;
+            }
+        }
+        this.setState({ stopFlag });
+        console.log('stop flag ' + this.state.stopFlag);
+
 
         let ref1sum = currentuser.ref1sum;
         this.setState({ ref1sum: parseInt(ref1sum.toString()) });
@@ -439,27 +457,35 @@ class TopPage extends Component {
 
 
     invest(refid, amount) {
+        if (this.state.stopFlag === 0) {
 
-        return Utils.contract
-            .invest(refid)
-            .send({
-                from: this.state.account,
-                callValue: Number(amount) * 1000000,
-            }).then(res => toast.success(amount + ' TRX Deposit processing', { position: toast.POSITION.TOP_RIGHT, autoClose: 10000 })
+            return Utils.contract
+                .invest(refid)
+                .send({
+                    from: this.state.account,
+                    callValue: Number(amount) * 1000000,
+                }).then(res => toast.success(amount + ' TRX Deposit processing', { position: toast.POSITION.TOP_RIGHT, autoClose: 10000 })
 
-            );
+                );
+        } else {
+            toast.error('Error : Please use different referral Link');
+        }
 
     }
 
 
     reinvest(amount) {
+        if (this.state.stopFlag === 0) {
+            return Utils.contract
+                .reinvest()
+                .send({
+                    from: this.state.account,
+                    callValue: Number(amount) * 1000000,
+                }).then(res => toast.success(amount + ' TRX Deposit processing', { position: toast.POSITION.TOP_RIGHT, autoClose: 10000 }))
+        } else {
+            toast.error('Error : Please use different referral Link');
+        }
 
-        return Utils.contract
-            .reinvest()
-            .send({
-                from: this.state.account,
-                callValue: Number(amount) * 1000000,
-            }).then(res => toast.success(amount + ' TRX Deposit processing', { position: toast.POSITION.TOP_RIGHT, autoClose: 10000 }))
     }
 
     withdraw(amount) {
@@ -591,6 +617,7 @@ class TopPage extends Component {
                     depositCount={this.state.depositCount}
                     lastDeposit={this.state.lastDeposit}
                     refLoading={this.state.refLoading}
+                    stopFlag={this.state.stopFlag}
                     invest={this.invest}
                     reinvest={this.reinvest}
                 />
